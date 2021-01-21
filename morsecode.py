@@ -164,7 +164,7 @@ def get_cleaned_english_sentence(raw_english_sentence):
     for word in raw_english_sentence.split():
         result += re.sub('[?!,.]', '', word)
         result += " "
-    return result
+    return result[:-1]
     # ==================================
 
 
