@@ -89,8 +89,9 @@ def is_validated_english_sentence(user_input):
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     alpha = [i for i in range(65, 91)]
     alpha += [i for i in range(97, 123)]
-    alpha += [32]
     temp = re.sub('[?!,.]', '', user_input)
+    pattern = re.compile(r'\s+')
+    temp = re.sub(pattern, '', temp)
     if temp == '':
         return False
     for i in temp:
@@ -159,7 +160,11 @@ def get_cleaned_english_sentence(raw_english_sentence):
     """
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
-    return re.sub('[?!,.]', '', raw_english_sentence).strip()
+    result = ''
+    for word in raw_english_sentence.split():
+        result += re.sub('[?!,.]', '', word)
+        result += " "
+    return result
     # ==================================
 
 
